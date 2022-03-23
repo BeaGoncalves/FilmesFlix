@@ -1,0 +1,20 @@
+package br.com.estudos.filmesflix.api
+
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+class MovieRestApiTask {
+
+    companion object {
+        const val BASE_URL = "https://raw.githubusercontent.com/"
+    }
+
+    // provedor dos filmes
+    private fun movieProvider() : Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+            //conversao do arquivo Json para a leitura do android
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    fun retrofitApi():MovieApi = movieProvider().create(MovieApi::class.java)
+}
