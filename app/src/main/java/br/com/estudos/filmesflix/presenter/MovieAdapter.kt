@@ -14,7 +14,6 @@ import coil.load
 class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>(){
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val movieTitle : TextView = itemView.findViewById(R.id.text_icon)
         val movieImage: ImageView = itemView.findViewById(R.id.image_movie_item)
     }
 
@@ -27,7 +26,6 @@ class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<Mo
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = movieList[position]
         holder.itemView.apply {
-            holder.movieTitle.text = item.titulo
             holder.movieImage.load(item.imagem) {
                 placeholder(R.drawable.ic_baseline_image_24)
                 fallback(R.drawable.ic_baseline_image_24)

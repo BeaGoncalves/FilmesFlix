@@ -3,9 +3,13 @@ package br.com.estudos.filmesflix.presenter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.HorizontalScrollView
+import android.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import br.com.estudos.filmesflix.R
 
 import br.com.estudos.filmesflix.databinding.ActivityMainBinding
 import br.com.estudos.filmesflix.domain.Movie
@@ -27,9 +31,7 @@ class MainActivity : AppCompatActivity() {
         movieViewModel.init()
         initObserver()
         progressVisibility(true)
-
     }
-
 
     private fun  initObserver(){
         movieViewModel.movieList.observe(this, Observer { list ->
@@ -40,21 +42,13 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-//    private fun initObserver(){
-//        movieViewModel.movieList.observe(this, { list ->
-//            if (list.isNotEmpty()) {
-//                populateList(list)
-//                progressVisibility(false)
-//            }
-//        })
-//    }
 
     private fun populateList(list: List<Movie>) = with(binding){
           adapterMovie = MovieAdapter(list)
         recyclerMain.apply {
             adapter = adapterMovie
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@MainActivity)
+            layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.HORIZONTAL, false)
         }
     }
 
