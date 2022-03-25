@@ -1,37 +1,34 @@
-package br.com.estudos.filmesflix.repository
+package br.com.estudos.filmesflix.implementation
 
 import android.util.Log
-import br.com.estudos.filmesflix.api.MovieRestApiTask
-import br.com.estudos.filmesflix.model.Movie
+import br.com.estudos.filmesflix.framework.f.api.MovieRestApiTask
+import br.com.estudos.filmesflix.data.MovieDataSource
+import br.com.estudos.filmesflix.domain.Movie
 
-class MovieRepository(private val movieRestApiTask: MovieRestApiTask) {
+
+class MovieDataSourceImplementation(private val movieRestApiTask: MovieRestApiTask) : MovieDataSource {
 
     companion object{
         const val TAG = "MovieRepository"
     }
-    
+
     private val movieList = arrayListOf<Movie>()
-    
-    // funcao que irá pegar todos os filmes e exibir em uma lista
-    fun getAllMovies() : List<Movie>{
-        
-        //criando o objeto retrofit e executando o webService
+
+    override fun getAllMoviesFromApi(): List<Movie> {
         val request = movieRestApiTask.retrofitApi().getAllMovie().execute()
-        
+
         //verifica se a solicitacao foi sucedida ou deu falha
         if (request.isSuccessful) {
             //body() irá retornar toda a lista de filme
-            request.body()?.let { 
+            request.body()?.let {
                 movieList.addAll(it)
             }
         } else {
             request.errorBody()?.let {
                 Log.d(TAG, it.toString())
             }
+
         }
-        
-        
-        
         return movieList
     }
 }

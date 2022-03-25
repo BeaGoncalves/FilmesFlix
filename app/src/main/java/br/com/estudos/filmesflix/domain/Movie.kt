@@ -1,9 +1,8 @@
-package br.com.estudos.filmesflix.model
+package br.com.estudos.filmesflix.domain
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Movie(

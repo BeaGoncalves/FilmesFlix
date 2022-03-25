@@ -1,4 +1,4 @@
-package br.com.estudos.filmesflix.api
+package br.com.estudos.filmesflix.framework.f.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,5 +16,5 @@ class MovieRestApiTask {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun retrofitApi():MovieApi = movieProvider().create(MovieApi::class.java)
+    fun retrofitApi(): MovieApi = movieProvider().create(MovieApi::class.java)
 }
